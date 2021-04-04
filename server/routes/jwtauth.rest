@@ -3,7 +3,9 @@ Content-Type: application/json;
 
 {
     "user_name": "SAM PLE",
-    "user_email": "SAMPLE@gmail.com",
-    "password":1947732064
+    "user_email": "eforseith4@csmonitor.com",
+    "password":"1947732064"
 }
 
+###
+GET http://localhost:5000/auth

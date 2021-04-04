@@ -5,6 +5,8 @@ const cors = require("cors");
 require("dotenv").config({ debug: process.env.PORT });
 // const jwt = require("jsonwebtoken");
 
+const authRouter = require("./routes/jwtAuth");
+
 const PORT = 5000;
 
 //middlewares
@@ -14,7 +16,7 @@ app.use(cors());
 //Routes
 
 //Register and Login Routes
-app.use("/auth", require("./routes/jwtAuth"));
+app.use("/auth", authRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);

@@ -1,8 +1,17 @@
 const { hash } = require("bcrypt");
-const { Router } = require("express");
-const router = Router();
+const express = require("express");
+const router = express.Router();
 const pool = require("../../db");
 require("dotenv").config();
+
+router.get("/", async (req, res, next) => {
+	try {
+		const users = await pool.query("SELECT * FROM users");
+		res.json(users.rows.map((row) => row));
+	} catch (error) {
+		console.log(error);
+	}
+});
 
 router.post("/register", async (req, res, next) => {
 	try {
@@ -10,18 +19,20 @@ router.post("/register", async (req, res, next) => {
 		//1 check if user exist (if so , throw error)
 		try {
 			const user = await pool.query(
-				"SELECT * FROM users WHERE user_email = $1",
+				"SELECT user_email FROM users WHERE user_email = $1",
 				[user_email]
 			);
-			if (user) {
-				res
-					.status(402)
-					.json("user_id already exist in the database, please try to login.");
-			}
+
+			res.json(user.rows);
+			// if (user) {
+			// 	res
+			// 		.status(402)
+			// 		.json("user_id already exist in the database, please try to login.");
+			// }
 
 			//2 if not exist bcrypt the user password
 		} catch (error) {
-			console.error(error);
+			console.log(error);
 			res.status(500).json("Server cannot reach the DB");
 		}
 
