@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../../db");
 require("dotenv").config();
+const jwtGenerator = require("../utils/jwtGenerator");
 
 router.get("/", async (req, res, next) => {
 	try {
@@ -37,7 +38,9 @@ router.post("/register", async (req, res, next) => {
 				"INSERT INTO users (user_name, user_email, user_password) VALUES ($1,$2,$3) RETURNING *",
 				[user_name, user_email, hashPassword]
 			);
-			return res.json(newUser.rows);
+			const token = jwtGenerator(newUser.rows[0].id);
+
+			res.json({ token });
 		} catch (err) {
 			console.log(err, "Could Not Create New User To The Server");
 		}
