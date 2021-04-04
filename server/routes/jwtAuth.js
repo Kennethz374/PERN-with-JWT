@@ -1,9 +1,10 @@
 const { hash } = require("bcrypt");
 const { Router } = require("express");
 const router = Router();
-const pool = require("../db");
+const pool = require("../../db");
+require("dotenv").config();
 
-router.post("/", async (req, res, next) => {
+router.post("/register", async (req, res, next) => {
 	try {
 		const { user_id, user_email, user_password, user_name } = req.body;
 		//1 check if user exist (if so , throw error)
