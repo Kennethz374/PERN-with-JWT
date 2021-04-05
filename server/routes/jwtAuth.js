@@ -1,89 +1,55 @@
-const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
-const pool = require("../../db");
-require("dotenv").config();
-const jwtGenerator = require("../utils/jwtGenerator");
+const { body, validationResult } = require("express-validator");
 
-router.get("/", async (req, res, next) => {
-	try {
-		const users = await pool.query("SELECT * FROM users");
-		res.json(users.rows.map((row) => row));
-	} catch (error) {
-		console.log(error);
+const { register, login, verify } = require("../controller/users_controller");
+const authorization = require("../middleware/authorization");
+
+const checkError = (req, res, next) => {
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).json({ errors: errors.array() });
 	}
-});
+	next();
+};
 
-router.post("/register", async (req, res, next) => {
-	const { user_email, user_password, user_name } = req.body;
-	try {
-		// find user in db
-		const user = await pool.query(
-			"SELECT user_email FROM users WHERE user_email = $1",
-			[user_email]
-		);
-		// if user exist, throw error
-		if (user.rows.length > 0) {
-			return res
-				.status(401)
-				.json("user already exist in the database, please try to login.");
-		}
-		// user not exist, hash the password
-		const salt = await bcrypt.genSalt(10);
-		const hashPassword = await bcrypt.hash(user_password, salt);
+router.post(
+	"/register",
 
-		// send info to db
-		try {
-			let newUser = await pool.query(
-				"INSERT INTO users (user_name, user_email, user_password) VALUES ($1,$2,$3) RETURNING *",
-				[user_name, user_email, hashPassword]
-			);
+	body("user_email")
+		.isEmail()
+		.normalizeEmail()
+		.withMessage("invalid email, please re-enter a valid email"),
+	body("user_name")
+		.exists()
+		.isLength({ min: 5 })
+		.trim()
+		.escape()
+		.withMessage("User name must be at least 5 characters long"),
+	body("user_password")
+		.isLength({ min: 10 })
+		.trim()
+		.escape()
+		.withMessage("Password has to be at least 10 characters long"),
+	checkError,
+	register
+);
 
-			// generate jwt token
-			const token = jwtGenerator(newUser.rows[0].id);
-			console.log(newUser, "Generate token");
-			res.json({ token });
-		} catch (err) {
-			console.log(err, "Could Not Create New User To The Server");
-		}
-	} catch (err) {
-		console.log(err, "Could Not Connect to DB and Check User Existence");
-	}
-});
+router.post(
+	"/login",
+	body("user_email")
+		.isEmail()
+		.withMessage("invalid email, please re-enter a valid email")
+		.normalizeEmail(),
+	body("user_password")
+		.isLength({ min: 10 })
+		.trim()
+		.escape()
+		.withMessage("Password has to be at least 10 characters long"),
+	checkError,
+	login
+);
 
-router.post("/login", async (req, res, next) => {
-	// destruct req.body
-	// check user existence
-	//compare incoming password with password in db
-	// give jwt token
-
-	const { user_email, user_id, user_password } = req.body;
-
-	try {
-		const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
-			user_email,
-		]);
-		if (user.rows.length === 0) {
-			// user not exist
-			return res.status(401).json("Password of Email is incorrect");
-		}
-		// if user exist, throw error
-		const match = await bcrypt.compare(
-			user_password,
-			user.rows[0].user_password
-		);
-
-		if (match) {
-			const token = jwtGenerator(user.rows[0].id);
-			console.log(user.rows[0], "Generate token");
-			return res.json({ token });
-		} else {
-			return res.status(401).json("Incorrect password, please try again");
-		}
-	} catch (error) {
-		console.error(error);
-		res.status(500).send("Server Error");
-	}
-});
+router.get("/verify", authorization, verify);
 
 module.exports = router;
