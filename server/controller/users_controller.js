@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
-const pool = require("../../db");
+const pool = require("../db");
 require("dotenv").config();
 const jwtGenerator = require("../utils/jwtGenerator");
 
