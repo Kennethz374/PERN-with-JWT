@@ -38,8 +38,10 @@ router.post("/register", async (req, res, next) => {
 				"INSERT INTO users (user_name, user_email, user_password) VALUES ($1,$2,$3) RETURNING *",
 				[user_name, user_email, hashPassword]
 			);
-			const token = jwtGenerator(newUser.rows[0].id);
 
+			// generate jwt token
+			const token = jwtGenerator(newUser.rows[0].id);
+			console.log(newUser, "Generate token");
 			res.json({ token });
 		} catch (err) {
 			console.log(err, "Could Not Create New User To The Server");
@@ -47,8 +49,41 @@ router.post("/register", async (req, res, next) => {
 	} catch (err) {
 		console.log(err, "Could Not Connect to DB and Check User Existence");
 	}
+});
 
-	//4 generate jwt token
+router.post("/login", async (req, res, next) => {
+	// destruct req.body
+	// check user existence
+	//compare incoming password with password in db
+	// give jwt token
+
+	const { user_email, user_id, user_password } = req.body;
+
+	try {
+		const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
+			user_email,
+		]);
+		if (user.rows.length === 0) {
+			// user not exist
+			return res.status(401).json("Password of Email is incorrect");
+		}
+		// if user exist, throw error
+		const match = await bcrypt.compare(
+			user_password,
+			user.rows[0].user_password
+		);
+
+		if (match) {
+			const token = jwtGenerator(user.rows[0].id);
+			console.log(user.rows[0], "Generate token");
+			return res.json({ token });
+		} else {
+			return res.status(401).json("Incorrect password, please try again");
+		}
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Server Error");
+	}
 });
 
 module.exports = router;
