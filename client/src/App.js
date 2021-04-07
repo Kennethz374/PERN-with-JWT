@@ -10,9 +10,10 @@ import {
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import { useGlobalContext } from "./Context";
 
 const App = () => {
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const { isAuthenticated } = useGlobalContext();
 
 	return (
 		<Router>

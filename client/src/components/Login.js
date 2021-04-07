@@ -1,7 +1,10 @@
 import React from "react";
+import { useGlobalContext } from "../Context";
 
 const Login = () => {
-	return <div>This is the login route</div>;
+	const { handleAuth, isAuthenticated } = useGlobalContext();
+
+	return <div>tHIS IS THE LOGIN PAGE</div>;
 };
 
 export default Login;
