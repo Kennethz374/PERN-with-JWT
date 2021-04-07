@@ -1,5 +1,3 @@
-import { Redirect } from "react-router-dom";
-
 const Reducer = (state, action) => {
 	if (action.type === "SET_AUTHENTICATE") {
 		return { ...state, isAuthenticated: action.payload };
@@ -16,6 +14,10 @@ const Reducer = (state, action) => {
 		if (type === "user_password") {
 			return { ...state, input: { ...state.input, user_password: input } };
 		}
+	}
+
+	if (action.type === "SET_USERNAME") {
+		return { ...state, currentUserName: action.payload };
 	}
 	return { ...state };
 };

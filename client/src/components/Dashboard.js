@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useGlobalContext } from "../Context";
 
 const Dashboard = () => {
-	const { isAuthenticated } = useGlobalContext();
+	const { getNameFromDashboard, currentUserName } = useGlobalContext();
+
+	useEffect(() => {
+		getNameFromDashboard();
+	}, []);
 	return (
 		<div>
-			<h1>Dashboard pAGE</h1>
+			<h1>Dashboard</h1>
+			<h1>Welcome back {currentUserName}</h1>
+			<button>Logout</button>
 		</div>
 	);
 };

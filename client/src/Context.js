@@ -12,11 +12,13 @@ export const AppProvider = ({ children }) => {
 			user_password: "",
 			user_name: "",
 		},
+		currentUserName: "",
 	};
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	const registerUrl = "http://localhost:5000/auth/register";
 	const loginUrl = "http://localhost:5000/auth/login";
+	const dashboardUrl = "http://localhost:5000/dashboard/";
 
 	const handleAuth = (boolean) => {
 		dispatch({ type: "SET_AUTHENTICATE", payload: boolean });
@@ -24,6 +26,9 @@ export const AppProvider = ({ children }) => {
 
 	const handleInputs = (type, input) => {
 		dispatch({ type: "HANDLE_INPUT", payload: { type, input } });
+	};
+	const setDashboardUserName = (user_name) => {
+		dispatch({ type: "SET_USERNAME", payload: user_name });
 	};
 
 	const onSubmitForm = async (
@@ -43,9 +48,27 @@ export const AppProvider = ({ children }) => {
 			});
 			const parseRes = await response.json();
 			console.log(parseRes);
-			localStorage.setItem("token", parseRes.token);
-			handleAuth(true);
-			return;
+			if (parseRes.token) {
+				localStorage.setItem("token", parseRes.token);
+				handleAuth(true);
+				return;
+			}
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
+	const getNameFromDashboard = async () => {
+		try {
+			const response = await fetch(dashboardUrl, {
+				method: "GET",
+				headers: { token: localStorage.token },
+			});
+			const parseRes = await response.json();
+			if (parseRes.user_name) {
+				setDashboardUserName(parseRes.user_name);
+			}
+			console.log(parseRes.user_name);
 		} catch (err) {
 			console.error(err.message);
 		}
@@ -60,6 +83,7 @@ export const AppProvider = ({ children }) => {
 				onSubmitForm,
 				registerUrl,
 				loginUrl,
+				getNameFromDashboard,
 			}}
 		>
 			{children}
