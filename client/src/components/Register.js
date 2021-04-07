@@ -2,7 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../Context";
 
 const Register = () => {
-	const { input, registerInputs, onSubmitForm } = useGlobalContext();
+	const { input, handleInputs, onSubmitForm, registerUrl } = useGlobalContext();
 	const { user_email, user_password, user_name } = input;
 
 	// const onSubmitForm = (e) => {
@@ -29,7 +29,7 @@ const Register = () => {
 					<h1>Register</h1>
 					<form
 						onSubmit={(e) =>
-							onSubmitForm(e, user_email, user_name, user_password)
+							onSubmitForm(e, registerUrl, user_email, user_password, user_name)
 						}
 						style={{ display: "flex", flexDirection: "column" }}
 					>
@@ -38,23 +38,25 @@ const Register = () => {
 							name="user_name"
 							placeholder="username"
 							value={user_name}
-							onChange={(e) => registerInputs("user_name", e.target.value)}
+							onChange={(e) => handleInputs("user_name", e.target.value)}
 						/>
 						<input
 							type="email"
 							name="user_email"
 							placeholder="email"
 							value={user_email}
-							onChange={(e) => registerInputs("user_email", e.target.value)}
+							onChange={(e) => handleInputs("user_email", e.target.value)}
 						/>
 						<input
 							type="password"
 							name="user_password"
 							placeholder="password"
 							value={user_password}
-							onChange={(e) => registerInputs("user_password", e.target.value)}
+							onChange={(e) => handleInputs("user_password", e.target.value)}
 						/>
-						<button style={{ width: "30%" }}>Submit</button>
+						<button style={{ width: "30%", margin: "2rem auto" }}>
+							Submit
+						</button>
 					</form>
 				</div>
 			</section>

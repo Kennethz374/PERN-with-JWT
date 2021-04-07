@@ -63,7 +63,7 @@ const login = async (req, res, next) => {
 		if (match) {
 			const token = jwtGenerator(user.rows[0].user_id);
 			console.log(user.rows[0].user_id, "Generate token");
-			return res.json({ jwt: token, user_id: user.rows[0].user_id });
+			return res.json({ token: token, user_id: user.rows[0].user_id });
 		} else {
 			return res.status(401).json("Incorrect password, please try again");
 		}

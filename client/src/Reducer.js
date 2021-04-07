@@ -5,7 +5,7 @@ const Reducer = (state, action) => {
 		return { ...state, isAuthenticated: action.payload };
 	}
 
-	if (action.type === "REGISTER_INPUT") {
+	if (action.type === "HANDLE_INPUT") {
 		const { type, input } = action.payload;
 		if (type === "user_name") {
 			return { ...state, input: { ...state.input, user_name: input } };
