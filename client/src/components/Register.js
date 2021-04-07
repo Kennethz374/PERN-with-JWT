@@ -2,8 +2,14 @@ import React from "react";
 import { useGlobalContext } from "../Context";
 
 const Register = () => {
-	const { input, registerInputs } = useGlobalContext();
+	const { input, registerInputs, onSubmitForm } = useGlobalContext();
 	const { user_email, user_password, user_name } = input;
+
+	// const onSubmitForm = (e) => {
+	// 	e.preventDefault();
+	// 	console.log("Submit");
+	// };
+
 	return (
 		<>
 			<section
@@ -21,30 +27,35 @@ const Register = () => {
 					style={{ margin: "4rem auto", width: "80%" }}
 				>
 					<h1>Register</h1>
-					<form style={{ display: "flex", flexDirection: "column" }}>
+					<form
+						onSubmit={(e) =>
+							onSubmitForm(e, user_email, user_name, user_password)
+						}
+						style={{ display: "flex", flexDirection: "column" }}
+					>
 						<input
 							type="text"
-							name="name"
+							name="user_name"
 							placeholder="username"
 							value={user_name}
 							onChange={(e) => registerInputs("user_name", e.target.value)}
 						/>
 						<input
 							type="email"
-							name="email"
+							name="user_email"
 							placeholder="email"
 							value={user_email}
 							onChange={(e) => registerInputs("user_email", e.target.value)}
 						/>
 						<input
 							type="password"
-							name="password"
+							name="user_password"
 							placeholder="password"
 							value={user_password}
 							onChange={(e) => registerInputs("user_password", e.target.value)}
 						/>
+						<button style={{ width: "30%" }}>Submit</button>
 					</form>
-					<button>Submit</button>
 				</div>
 			</section>
 		</>

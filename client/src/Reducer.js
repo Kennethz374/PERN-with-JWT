@@ -2,7 +2,7 @@ import { Redirect } from "react-router-dom";
 
 const Reducer = (state, action) => {
 	if (action.type === "SET_AUTHENTICATE") {
-		return { ...state, isAuthenticated: !state.isAuthenticated };
+		return { ...state, isAuthenticated: action.payload };
 	}
 
 	if (action.type === "REGISTER_INPUT") {
