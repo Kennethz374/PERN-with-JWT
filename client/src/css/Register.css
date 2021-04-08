@@ -1,13 +1,16 @@
-.login-container {
-  background-image: url("https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100");
-  background-position: left bottom;
-  height: 100vh;
-  padding: 1rem;
-  color: #2a4957;
-  text-transform: capitalize;
+.register-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100");
+  background-position: left bottom;
+  color: #2a4957;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -16,7 +19,7 @@
           justify-content: center;
 }
 
-.login-container .login-form-center {
+.register-container .reg-form-center {
   text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -29,11 +32,11 @@
   width: 80%;
 }
 
-.login-container .section-title {
+.register-container .section-title {
   margin: 2rem;
 }
 
-.login-container .login-form {
+.register-container .reg-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -44,37 +47,37 @@
   font-size: 2rem;
 }
 
-.login-container input {
+.register-container input {
   height: 2rem;
   border-top-color: transparent;
   border-left-color: transparent;
   border-right-color: transparent;
 }
 
-.login-container textarea:focus,
-.login-container input:focus {
+.register-container textarea:focus,
+.register-container input:focus {
   outline: none;
 }
 
-.login-container ::-webkit-input-placeholder {
+.register-container ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   padding-left: 1rem;
   text-transform: capitalize;
 }
 
-.login-container .input-email {
+.register-container .input-name {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.login-container .input-password {
+.register-container .input-password {
   border-bottom-color: transparent;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   margin-bottom: 1rem;
 }
 
-.login-container .login-button {
+.register-container .reg-button {
   height: 3rem;
   color: white;
   font-weight: bolder;
@@ -85,9 +88,9 @@
   margin-top: 0.5rem;
 }
 
-.login-container .login-button:hover {
+.register-container .reg-button:hover {
   -webkit-transition-duration: 1s;
           transition-duration: 1s;
   opacity: 0.8;
 }
-/*# sourceMappingURL=Login.css.map */
+/*# sourceMappingURL=Register.css.map */

@@ -32,6 +32,7 @@ const Login = () => {
 						onChange={(e) => handleInputs("user_password", e.target.value)}
 					/>
 					<button className="login-button">Login</button>
+					<button className="login-button">Register</button>
 				</form>
 			</div>
 		</section>
