@@ -101,7 +101,7 @@ export const AppProvider = ({ children }) => {
 				headers: { token: localStorage.token },
 			});
 			const parseRes = await response.json();
-			parseRes ? handleAuth(true) : handleAuth(false);
+			parseRes === true ? handleAuth(true) : handleAuth(false);
 		} catch (err) {
 			console.error(err);
 		}

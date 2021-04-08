@@ -1,5 +1,7 @@
 import React from "react";
+
 import { useGlobalContext } from "../Context";
+import "../css/Login.css";
 
 const Login = () => {
 	const { onSubmitForm, loginUrl, input, handleInputs } = useGlobalContext();
@@ -7,40 +9,29 @@ const Login = () => {
 
 	return (
 		<section className="login-container">
-			<div className="login-form-center" style={{ textAlign: "center" }}>
-				<h1>Login</h1>
+			<div className="login-form-center">
+				<h1 className="section-title">Login</h1>
 				<form
 					className="login-form"
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						width: "80%",
-						margin: "1rem auto",
-					}}
 					onSubmit={(e) => onSubmitForm(e, loginUrl, user_email, user_password)}
 				>
 					<input
+						className="input-email"
 						type="email"
 						name="user_email"
-						className="login-input"
 						placeholder="email"
 						value={user_email}
 						onChange={(e) => handleInputs("user_email", e.target.value)}
 					/>
 					<input
+						className="input-password"
 						type="password"
-						className="login-input"
 						name="user_password"
 						placeholder="password"
 						value={user_password}
 						onChange={(e) => handleInputs("user_password", e.target.value)}
 					/>
-					<button
-						className="login-button"
-						style={{ margin: "2rem auto", width: "30%" }}
-					>
-						Login
-					</button>
+					<button className="login-button">Login</button>
 				</form>
 			</div>
 		</section>
