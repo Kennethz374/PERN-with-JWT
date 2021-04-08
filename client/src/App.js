@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -13,7 +13,11 @@ import Register from "./components/Register";
 import { useGlobalContext } from "./Context";
 
 const App = () => {
-	const { isAuthenticated } = useGlobalContext();
+	const { isAuthenticated, verifyAuth } = useGlobalContext();
+
+	useEffect(() => {
+		verifyAuth();
+	}, []);
 
 	return (
 		<Router>

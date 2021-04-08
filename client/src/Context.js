@@ -16,10 +16,13 @@ export const AppProvider = ({ children }) => {
 	};
 	const [state, dispatch] = useReducer(reducer, initialState);
 
+	// API END POINTS
 	const registerUrl = "http://localhost:5000/auth/register";
 	const loginUrl = "http://localhost:5000/auth/login";
 	const dashboardUrl = "http://localhost:5000/dashboard/";
+	const verifyUrl = "http://localhost:5000/auth/verify";
 
+	// HELPER FUNCTIONS
 	const handleAuth = (boolean) => {
 		dispatch({ type: "SET_AUTHENTICATE", payload: boolean });
 	};
@@ -27,8 +30,18 @@ export const AppProvider = ({ children }) => {
 	const handleInputs = (type, input) => {
 		dispatch({ type: "HANDLE_INPUT", payload: { type, input } });
 	};
+
 	const setDashboardUserName = (user_name) => {
 		dispatch({ type: "SET_USERNAME", payload: user_name });
+	};
+
+	const resetInputs = () => {
+		const input = {
+			user_email: "",
+			user_name: "",
+			user_password: "",
+		};
+		dispatch({ type: "RESET_INPUT", payload: { input } });
 	};
 
 	const onSubmitForm = async (
@@ -74,6 +87,26 @@ export const AppProvider = ({ children }) => {
 		}
 	};
 
+	const logout = (e) => {
+		e.preventDefault();
+		localStorage.removeItem("token");
+		handleAuth(false);
+		resetInputs();
+	};
+
+	const verifyAuth = async () => {
+		try {
+			const response = await fetch(verifyUrl, {
+				method: "GET",
+				headers: { token: localStorage.token },
+			});
+			const parseRes = await response.json();
+			parseRes ? handleAuth(true) : handleAuth(false);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -84,6 +117,8 @@ export const AppProvider = ({ children }) => {
 				registerUrl,
 				loginUrl,
 				getNameFromDashboard,
+				logout,
+				verifyAuth,
 			}}
 		>
 			{children}
