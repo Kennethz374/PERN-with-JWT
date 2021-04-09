@@ -2,6 +2,7 @@ import React from "react";
 
 import { useGlobalContext } from "../Context";
 import "../css/Login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 	const { onSubmitForm, loginUrl, input, handleInputs } = useGlobalContext();
@@ -32,7 +33,9 @@ const Login = () => {
 						onChange={(e) => handleInputs("user_password", e.target.value)}
 					/>
 					<button className="login-button">Login</button>
-					<button className="login-button">Register</button>
+					<Link to="/auth/register" className="login-button">
+						<span>Move to Register</span>
+					</Link>
 				</form>
 			</div>
 		</section>

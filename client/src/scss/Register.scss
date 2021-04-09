@@ -60,10 +60,16 @@
 		opacity: 0.5;
 		background: black;
 		margin-top: 0.5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
 		&:hover {
 			transition-duration: 1s;
 			opacity: 0.8;
 		}
+	}
+	a {
+		text-decoration: none;
 	}
 }

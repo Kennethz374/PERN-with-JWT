@@ -2,6 +2,7 @@ import React from "react";
 
 import { useGlobalContext } from "../Context";
 import "../css/Register.css";
+import { Link } from "react-router-dom";
 
 const Register = () => {
 	const { input, handleInputs, onSubmitForm, registerUrl } = useGlobalContext();
@@ -43,7 +44,9 @@ const Register = () => {
 							onChange={(e) => handleInputs("user_password", e.target.value)}
 						/>
 						<button className="reg-button">Register</button>
-						<button className="reg-button">Login</button>
+						<Link to="/auth/login" className="reg-button">
+							<span>Move to Login</span>
+						</Link>
 					</form>
 				</div>
 			</section>
