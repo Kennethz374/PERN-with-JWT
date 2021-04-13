@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import moment from "moment";
 import { useGlobalContext } from "../Context";
 import "../css/Dashboard.css";
 const Dashboard = () => {
@@ -10,9 +11,19 @@ const Dashboard = () => {
 	}, []);
 	return (
 		<div className="dashboard-container">
-			<h1>Dashboard</h1>
-			<h1>Welcome back {currentUserName}</h1>
-			<button onClick={logout}>Logout</button>
+			<div className="dashboard-header">
+				<h3>{moment().format("MMM Do YYYY")} </h3>
+				<h2>{moment().format("LT")}</h2>
+				<h4>Welcome back {currentUserName}</h4>
+			</div>
+
+			<ul className="dashboard-body">
+				<li className="activity-card"></li>
+			</ul>
+
+			<button className="logout-btn" onClick={logout}>
+				Logout
+			</button>
 		</div>
 	);
 };

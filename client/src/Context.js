@@ -7,6 +7,7 @@ const AppContext = React.createContext();
 export const AppProvider = ({ children }) => {
 	const initialState = {
 		isAuthenticated: false,
+		isLoading: false,
 		input: {
 			user_email: "",
 			user_password: "",
@@ -25,6 +26,10 @@ export const AppProvider = ({ children }) => {
 	// HELPER FUNCTIONS
 	const handleAuth = (boolean) => {
 		dispatch({ type: "SET_AUTHENTICATE", payload: boolean });
+	};
+
+	const setIsLoading = (boolean) => {
+		dispatch({ type: "SET_LOADING", payload: boolean });
 	};
 
 	const handleInputs = (type, input) => {
@@ -95,6 +100,7 @@ export const AppProvider = ({ children }) => {
 	};
 
 	const verifyAuth = async () => {
+		setIsLoading(true);
 		try {
 			const response = await fetch(verifyUrl, {
 				method: "GET",
@@ -102,6 +108,7 @@ export const AppProvider = ({ children }) => {
 			});
 			const parseRes = await response.json();
 			parseRes === true ? handleAuth(true) : handleAuth(false);
+			setIsLoading(false);
 		} catch (err) {
 			console.error(err);
 		}
@@ -119,6 +126,7 @@ export const AppProvider = ({ children }) => {
 				getNameFromDashboard,
 				logout,
 				verifyAuth,
+				setIsLoading,
 			}}
 		>
 			{children}

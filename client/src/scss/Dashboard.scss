@@ -1,0 +1,54 @@
+.dashboard-container {
+	background-image: url("https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100");
+	background-position: left bottom;
+	height: 100vh;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	.dashboard-header {
+		display: flex;
+		flex-direction: column;
+	}
+
+	h2,
+	h3 {
+		margin: 0.5rem auto;
+	}
+
+	.dashboard-body {
+		margin: 0 auto;
+		width: 95%;
+		min-height: 75vh;
+		background-color: white;
+		border-radius: 5px;
+
+		.activity-card {
+		}
+	}
+
+	.logout-btn {
+		height: 3rem;
+		color: white;
+		font-weight: bolder;
+		font-size: 1rem;
+		border-radius: 10px;
+		opacity: 0.5;
+		background: black;
+		margin: 0.5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		min-width: 125px;
+		width: 30vw;
+		left: 32%;
+		bottom: 0;
+
+		&:hover {
+			transition-duration: 1s;
+			opacity: 0.8;
+		}
+	}
+}

@@ -10,10 +10,11 @@ import {
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Loading from "./components/Loading";
 import { useGlobalContext } from "./Context";
 
 const App = () => {
-	const { isAuthenticated, verifyAuth } = useGlobalContext();
+	const { isAuthenticated, verifyAuth, isLoading } = useGlobalContext();
 
 	useEffect(() => {
 		verifyAuth();
@@ -32,7 +33,14 @@ const App = () => {
 				</Route>
 
 				<Route exact path="/dashboard">
-					{isAuthenticated ? <Dashboard /> : <Redirect to="/auth/login" />}
+					{isLoading ? (
+						<Loading />
+					) : isAuthenticated ? (
+						<Dashboard />
+					) : (
+						<Redirect to="/auth/login" />
+					)}
+					{/* {isAuthenticated ? <Dashboard /> : <Redirect to="/auth/login" />} */}
 				</Route>
 			</Switch>
 		</Router>
