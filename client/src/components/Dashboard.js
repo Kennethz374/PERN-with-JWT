@@ -17,9 +17,22 @@ const Dashboard = () => {
 				<h4>Welcome back {currentUserName}</h4>
 			</div>
 
-			<ul className="dashboard-body">
-				<li className="activity-card"></li>
-			</ul>
+			<div className="dashboard-body">
+				<ul className="activity-list">
+					<li className="activity-card">
+						<p>Drink Milk 220 ml</p>
+						<button>edit</button>
+					</li>
+					<li className="activity-card">
+						<p>Drink Milk 220 ml</p>
+						<button>edit</button>
+					</li>
+					<li className="activity-card">
+						<p>Drink Milk 220 ml</p>
+						<button>edit</button>
+					</li>
+				</ul>
+			</div>
 
 			<button className="logout-btn" onClick={logout}>
 				Logout
