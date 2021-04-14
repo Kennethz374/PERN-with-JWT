@@ -41,14 +41,6 @@ const Dashboard = () => {
 						<p>Drink Milk 220 ml</p>
 						<button>edit</button>
 					</li>
-					<li className="activity-card">
-						<p>Drink Milk 220 ml</p>
-						<button>edit</button>
-					</li>
-					<li className="activity-card">
-						<p>Drink Milk 220 ml</p>
-						<button>edit</button>
-					</li>
 				</ul>
 			</div>
 
