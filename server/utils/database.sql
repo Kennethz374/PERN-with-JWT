@@ -27,3 +27,5 @@ CREATE TABLE activities(
     time TIMESTAMP NOT NULL,
     activity_owner_id uuid REFERENCES babies(baby_id) ON DELETE CASCADE
 );
+
+INSERT INTO babies VALUES('233d9c5d-523c-43d3-97f4-4eae97bff9ac','Alvis','Male','2020/11/12','85502736-9379-4d0c-aafb-00c2c6d80f5b');

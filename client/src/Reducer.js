@@ -16,8 +16,12 @@ const Reducer = (state, action) => {
 		}
 	}
 
-	if (action.type === "SET_USERNAME") {
-		return { ...state, currentUserName: action.payload };
+	if (action.type === "SET_INFO") {
+		return {
+			...state,
+			currentUserName: action.payload[0].user_name,
+			babies: action.payload,
+		};
 	}
 
 	if (action.type === "RESET_INPUT") {

@@ -14,6 +14,8 @@ export const AppProvider = ({ children }) => {
 			user_name: "",
 		},
 		currentUserName: "",
+		currentBaby: "",
+		babies: [],
 	};
 	const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -36,8 +38,8 @@ export const AppProvider = ({ children }) => {
 		dispatch({ type: "HANDLE_INPUT", payload: { type, input } });
 	};
 
-	const setDashboardUserName = (user_name) => {
-		dispatch({ type: "SET_USERNAME", payload: user_name });
+	const setDashboardInfo = (info) => {
+		dispatch({ type: "SET_INFO", payload: info });
 	};
 
 	const resetInputs = () => {
@@ -76,17 +78,17 @@ export const AppProvider = ({ children }) => {
 		}
 	};
 
-	const getNameFromDashboard = async () => {
+	const getInfoFromDashboard = async () => {
 		try {
 			const response = await fetch(dashboardUrl, {
 				method: "GET",
 				headers: { token: localStorage.token },
 			});
 			const parseRes = await response.json();
-			if (parseRes.user_name) {
-				setDashboardUserName(parseRes.user_name);
+			if (parseRes[0].user_name) {
+				setDashboardInfo(parseRes);
 			}
-			console.log(parseRes.user_name);
+			console.log(parseRes);
 		} catch (err) {
 			console.error(err.message);
 		}
@@ -100,8 +102,8 @@ export const AppProvider = ({ children }) => {
 	};
 
 	const verifyAuth = async () => {
-		setIsLoading(true);
 		try {
+			setIsLoading(true);
 			const response = await fetch(verifyUrl, {
 				method: "GET",
 				headers: { token: localStorage.token },
@@ -123,7 +125,7 @@ export const AppProvider = ({ children }) => {
 				onSubmitForm,
 				registerUrl,
 				loginUrl,
-				getNameFromDashboard,
+				getInfoFromDashboard,
 				logout,
 				verifyAuth,
 				setIsLoading,

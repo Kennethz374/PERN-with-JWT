@@ -40,6 +40,24 @@
 		}
 	}
 
+	.nav-babies {
+		border-bottom: 2px solid green;
+		margin-bottom: 0.5rem;
+
+		.baby-boy {
+			background-color: blue;
+			color: white;
+			border-radius: 5px;
+			opacity: 0.8;
+			margin: 0.5rem;
+		}
+		.baby-girl {
+			background-color: pink;
+			border-radius: 5px;
+			opacity: 0.8;
+			margin: 0.5rem;
+		}
+	}
 	.logout-btn {
 		height: 3rem;
 		color: white;

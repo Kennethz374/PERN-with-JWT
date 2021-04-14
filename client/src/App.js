@@ -24,23 +24,23 @@ const App = () => {
 	return (
 		<Router>
 			<Switch>
+				<Route exact path="/dashboard">
+					{isLoading ? (
+						<Loading />
+					) : !isAuthenticated ? (
+						<Redirect to="/auth/login" />
+					) : (
+						<Dashboard />
+					)}
+					{/* {!isAuthenticated ? <Redirect to="/auth/login" /> : <Dashboard />} */}
+				</Route>
+
 				<Route exact path="/auth/register">
 					{!isAuthenticated ? <Register /> : <Redirect to="/auth/login" />}
 				</Route>
 
 				<Route exact path="/auth/login">
 					{!isAuthenticated ? <Login /> : <Redirect to="/dashboard" />}
-				</Route>
-
-				<Route exact path="/dashboard">
-					{isLoading ? (
-						<Loading />
-					) : isAuthenticated ? (
-						<Dashboard />
-					) : (
-						<Redirect to="/auth/login" />
-					)}
-					{/* {isAuthenticated ? <Dashboard /> : <Redirect to="/auth/login" />} */}
 				</Route>
 			</Switch>
 		</Router>
