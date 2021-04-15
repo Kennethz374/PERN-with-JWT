@@ -7,6 +7,7 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	align-items: center;
 
 	.dashboard-header {
 		display: flex;
@@ -16,6 +17,23 @@
 	h2,
 	h3 {
 		margin: 0.5rem auto;
+	}
+
+	.add-baby {
+		border: 2px solid black;
+		padding: 0.25rem;
+		width: max-content;
+		border-radius: 5px;
+		background-color: rgba(99, 79, 75, 0.8);
+		font-weight: 600;
+		transition-duration: 0.5s;
+		color: white;
+
+		&:hover {
+			cursor: pointer;
+			background-color: black;
+			color: white;
+		}
 	}
 
 	.dashboard-body {

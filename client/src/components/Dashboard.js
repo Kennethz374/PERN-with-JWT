@@ -22,6 +22,8 @@ const Dashboard = () => {
 				<h4>Welcome back {currentUserName}</h4>
 			</div>
 
+			<div className="add-baby">Add A Baby</div>
+
 			<div className="nav-babies">
 				{babies.map((baby) => {
 					return (
