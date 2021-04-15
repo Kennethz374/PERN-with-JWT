@@ -20,7 +20,9 @@ const Reducer = (state, action) => {
 		return {
 			...state,
 			currentUserName: action.payload[0].user_name,
+			currentUserId: action.payload[0].user_id,
 			babies: action.payload,
+			currentBaby: action.payload[0].baby_id,
 		};
 	}
 

@@ -14,6 +14,7 @@ export const AppProvider = ({ children }) => {
 			user_name: "",
 		},
 		currentUserName: "",
+		currentUserId: "",
 		currentBaby: "",
 		babies: [],
 	};
