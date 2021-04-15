@@ -41,7 +41,8 @@ const Dashboard = () => {
 				<ul className="activity-list">
 					<li className="activity-card">
 						<p>Drink Milk 220 ml</p>
-						<button>edit</button>
+						<button>Edit</button>
+						<button>Delete</button>
 					</li>
 				</ul>
 			</div>
