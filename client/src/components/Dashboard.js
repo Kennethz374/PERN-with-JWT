@@ -21,6 +21,7 @@ const Dashboard = () => {
 	const activities = currentActivity.filter(
 		(act) => act.baby_id === currentBaby
 	);
+
 	return (
 		<div className="dashboard-container">
 			<div className="dashboard-header">

@@ -6,7 +6,7 @@ const AppContext = React.createContext();
 
 export const AppProvider = ({ children }) => {
 	const initialState = {
-		isAuthenticated: false,
+		isAuthenticated: "loading",
 		isLoading: false,
 		input: {
 			user_email: "",
@@ -116,7 +116,6 @@ export const AppProvider = ({ children }) => {
 			});
 			const parseRes = await response.json();
 			parseRes === true ? handleAuth(true) : handleAuth(false);
-			// setIsLoading(false);
 		} catch (err) {
 			console.error(err);
 		}

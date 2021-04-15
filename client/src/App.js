@@ -25,7 +25,7 @@ const App = () => {
 		<Router>
 			<Switch>
 				<Route exact path="/dashboard">
-					{isLoading ? (
+					{isAuthenticated === "loading" ? (
 						<Loading />
 					) : !isAuthenticated ? (
 						<Redirect to="/auth/login" />
