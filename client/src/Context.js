@@ -44,6 +44,10 @@ export const AppProvider = ({ children }) => {
 		dispatch({ type: "SET_INFO", payload: info });
 	};
 
+	const selectBaby = (id) => {
+		dispatch({ type: "TOGGLE_BABY", payload: id });
+	};
+
 	const resetInputs = () => {
 		const input = {
 			user_email: "",
@@ -105,14 +109,14 @@ export const AppProvider = ({ children }) => {
 
 	const verifyAuth = async () => {
 		try {
-			setIsLoading(true);
+			// setIsLoading(true);
 			const response = await fetch(verifyUrl, {
 				method: "GET",
 				headers: { token: localStorage.token },
 			});
 			const parseRes = await response.json();
 			parseRes === true ? handleAuth(true) : handleAuth(false);
-			setIsLoading(false);
+			// setIsLoading(false);
 		} catch (err) {
 			console.error(err);
 		}
@@ -131,6 +135,7 @@ export const AppProvider = ({ children }) => {
 				logout,
 				verifyAuth,
 				setIsLoading,
+				selectBaby,
 			}}
 		>
 			{children}

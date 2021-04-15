@@ -42,6 +42,10 @@ const Reducer = (state, action) => {
 		};
 	}
 
+	if ((action.type = "TOGGLE_BABY")) {
+		return { ...state, currentBaby: action.payload };
+	}
+
 	if ((action.type = "SET_LOADING")) {
 		return { ...state, isLoading: action.payload };
 	}
