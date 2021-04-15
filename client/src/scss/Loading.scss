@@ -4,12 +4,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-image: url("https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100");
+	background-position: left bottom;
 }
 
 .loader {
 	border: 16px solid #f3f3f3;
 	border-radius: 50%;
-	border-top: 16px solid #3498db;
+	border-top: 16px solid #222527;
 	width: 120px;
 	height: 120px;
 	-webkit-animation: spin 2s linear infinite; /* Safari */
