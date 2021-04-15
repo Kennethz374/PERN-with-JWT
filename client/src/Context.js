@@ -16,6 +16,7 @@ export const AppProvider = ({ children }) => {
 		currentUserName: "",
 		currentUserId: "",
 		currentBaby: "",
+		currentActivity: [],
 		babies: [],
 	};
 	const [state, dispatch] = useReducer(reducer, initialState);
@@ -86,9 +87,9 @@ export const AppProvider = ({ children }) => {
 				headers: { token: localStorage.token },
 			});
 			const parseRes = await response.json();
-			if (parseRes[0].user_name) {
-				setDashboardInfo(parseRes);
-			}
+			// if (parseRes.babies[0].user_name) {
+			setDashboardInfo(parseRes);
+			// }
 			console.log(parseRes);
 		} catch (err) {
 			console.error(err.message);

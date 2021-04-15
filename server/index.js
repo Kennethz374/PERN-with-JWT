@@ -9,6 +9,7 @@ const morgan = require("morgan");
 const authRouter = require("./routes/jwtAuth");
 const dashboardRouter = require("./routes/dashboard");
 const babyRouter = require("./routes/baby");
+const activityRouter = require("./routes/activity");
 
 const PORT = 5000;
 
@@ -27,6 +28,8 @@ app.use("/dashboard", dashboardRouter);
 
 //Add Baby
 app.use("/baby", babyRouter);
+
+app.use("/activity", activityRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);

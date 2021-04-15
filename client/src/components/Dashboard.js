@@ -47,6 +47,8 @@ const Dashboard = () => {
 				</ul>
 			</div>
 
+			<div className="add-activity">Add</div>
+
 			<button className="logout-btn" onClick={logout}>
 				Logout
 			</button>

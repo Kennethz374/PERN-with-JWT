@@ -17,12 +17,14 @@ const Reducer = (state, action) => {
 	}
 
 	if (action.type === "SET_INFO") {
+		const { babies, babyActivities } = action.payload;
 		return {
 			...state,
-			currentUserName: action.payload[0].user_name,
-			currentUserId: action.payload[0].user_id,
-			babies: action.payload,
-			currentBaby: action.payload[0].baby_id,
+			currentUserName: babies[0].user_name,
+			currentUserId: babies[0].user_id,
+			babies: babies,
+			currentBaby: babies[0].baby_id,
+			currentActivity: babyActivities,
 		};
 	}
 

@@ -79,6 +79,27 @@
   background: tomato;
 }
 
+.dashboard-container .add-activity {
+  border: 2px solid black;
+  padding: 0.25rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 5px;
+  background-color: rgba(99, 79, 75, 0.8);
+  font-weight: 600;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.dashboard-container .add-activity:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
 .dashboard-container .nav-babies {
   border-bottom: 2px solid green;
   margin-bottom: 0.5rem;

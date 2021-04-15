@@ -29,3 +29,16 @@ CREATE TABLE activities(
 );
 
 INSERT INTO babies VALUES('233d9c5d-523c-43d3-97f4-4eae97bff9ac','Alvis','Male','2020/11/12','85502736-9379-4d0c-aafb-00c2c6d80f5b');
+
+INSERT INTO activities (description, amount,time, activity_owner_id) VALUES('Drink Milk',200, CURRENT_TIMESTAMP, '62c5de89-436e-4caf-9e8f-3f0b509a8ab5');
+INSERT INTO activities (description, amount,time, activity_owner_id) VALUES('Poo',null, CURRENT_TIMESTAMP, '233d9c5d-523c-43d3-97f4-4eae97bff9ac');
+
+
+
+SELECT baby_name, baby_gender, baby_birthday, user_id, user_name, baby_id, activity_id, description, amount, time 
+FROM babies 
+INNER JOIN users ON user_id = baby_owner_id
+INNER JOIN activities ON baby_id = activity_owner_id 
+WHERE user_id = '85502736-9379-4d0c-aafb-00c2c6d80f5b';
+
+SELECT baby_name, baby_gender, baby_birthday, user_name, baby_id FROM babies INNER JOIN users ON user_id = baby_owner_id WHERE user_id = $1
