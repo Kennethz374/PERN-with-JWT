@@ -37,7 +37,7 @@ const Reducer = (state, action) => {
 		return {
 			...state,
 			currentUserName: babies[0].user_name,
-			currentUserId: babies[0].user_id,
+			currentUserId: babyActivities[0].user_id,
 			babies: babies,
 			currentBaby: babies[0].baby_id,
 			currentActivity: babyActivities,
@@ -60,6 +60,10 @@ const Reducer = (state, action) => {
 
 	if (action.type === "TOGGLE_BABY") {
 		return { ...state, currentBaby: action.payload };
+	}
+
+	if (action.type === "TOGGLE_MODAL") {
+		return { ...state, isModalOpen: !state.isModalOpen };
 	}
 
 	if (action.type === "SET_LOADING") {

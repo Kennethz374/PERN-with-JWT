@@ -7,6 +7,7 @@ const createBaby = async (req, res, next) => {
 			"INSERT INTO babies (baby_name, baby_gender, baby_birthday, baby_owner_id) VALUES ($1,$2,$3,$4) RETURNING *",
 			[baby_name, baby_gender, baby_birthday, baby_owner_id]
 		);
+		console("new baby", newBaby[0]);
 		return res.json(newBaby.rows[0]);
 	} catch (err) {
 		console.error(err);

@@ -4,12 +4,31 @@ import { useGlobalContext } from "../Context";
 import "../css/AddingModal.css";
 
 const AddingModal = () => {
-	const { currentUserId, handleNewbabyInfo, newBaby } = useGlobalContext();
+	const {
+		currentUserId,
+		handleNewbabyInfo,
+		newBaby,
+		toggleModal,
+		onSubmitBabyForm,
+		addBabyUrl,
+	} = useGlobalContext();
 	const { baby_name, baby_gender, baby_birthday, baby_owner_id } = newBaby;
 	return (
 		<div className="modal-container">
 			<div className="form-center">
-				<form className="baby-form">
+				<form
+					onSubmit={(e) =>
+						onSubmitBabyForm(
+							e,
+							addBabyUrl,
+							baby_name,
+							baby_gender,
+							baby_birthday,
+							baby_owner_id
+						)
+					}
+					className="baby-form"
+				>
 					<input
 						type="text"
 						name="baby_owner_id"
@@ -46,7 +65,7 @@ const AddingModal = () => {
 					/>
 
 					<div className="modal_footer">
-						<button>Cancel</button>
+						<button onClick={toggleModal}>Cancel</button>
 						<button>Submit</button>
 					</div>
 				</form>

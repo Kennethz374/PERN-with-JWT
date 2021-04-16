@@ -8,6 +8,7 @@ export const AppProvider = ({ children }) => {
 	const initialState = {
 		isAuthenticated: "loading",
 		isLoading: false,
+		isModalOpen: false,
 		input: {
 			user_email: "",
 			user_password: "",
@@ -33,10 +34,15 @@ export const AppProvider = ({ children }) => {
 	const loginUrl = "http://localhost:5000/auth/login";
 	const dashboardUrl = "http://localhost:5000/dashboard/";
 	const verifyUrl = "http://localhost:5000/auth/verify";
+	const addBabyUrl = "http://localhost:5000/baby/create";
 
 	// HELPER FUNCTIONS
 	const handleAuth = (boolean) => {
 		dispatch({ type: "SET_AUTHENTICATE", payload: boolean });
+	};
+
+	const toggleModal = () => {
+		dispatch({ type: "TOGGLE_MODAL" });
 	};
 
 	const setIsLoading = (boolean) => {
@@ -111,34 +117,29 @@ export const AppProvider = ({ children }) => {
 		}
 	};
 
-	// const onSubmitBabyFrom = async (
-	// 	e,
-	// 	url,
-	// 	baby_name,
-	// 	baby_gender,
-	// 	baby_birthday,
-	// 	baby_owner_id
-	// ) => {
-	// 	e.preventDefault();
+	const onSubmitBabyForm = async (
+		e,
+		url,
+		baby_name,
+		baby_gender,
+		baby_birthday,
+		baby_owner_id
+	) => {
+		e.preventDefault();
 
-	// 	const body = { baby_name, baby_gender, baby_birthday, baby_owner_id };
-	// 	try {
-	// 		const response = await fetch(url, {
-	// 			method: "POST",
-	// 			headers: { "Content-Type": "application/json" },
-	// 			body: JSON.stringify(body),
-	// 		});
-	// 		const parseRes = await response.json();
-	// 		console.log(parseRes);
-	// 		// if (parseRes.token) {
-	// 		// 	// localStorage.setItem("token", parseRes.token);
-	// 		// 	// handleAuth(true);
-	// 		// 	return;
-	// 		// }
-	// 	} catch (err) {
-	// 		console.error(err.message);
-	// 	}
-	// };
+		const body = { baby_name, baby_gender, baby_birthday, baby_owner_id };
+		try {
+			const response = await fetch(url, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(body),
+			});
+			const parseRes = await response.json();
+			console.log(parseRes);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
 
 	const logout = (e) => {
 		e.preventDefault();
@@ -168,14 +169,17 @@ export const AppProvider = ({ children }) => {
 				handleAuth,
 				handleInputs,
 				onSubmitForm,
-				registerUrl,
-				loginUrl,
+				onSubmitBabyForm,
 				getInfoFromDashboard,
 				logout,
 				verifyAuth,
 				setIsLoading,
 				selectBaby,
 				handleNewbabyInfo,
+				toggleModal,
+				registerUrl,
+				loginUrl,
+				addBabyUrl,
 			}}
 		>
 			{children}
