@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import moment from "moment";
+import dayjs from "dayjs";
 
 import { useGlobalContext } from "../Context";
 import "../css/Dashboard.css";
@@ -66,9 +67,8 @@ const Dashboard = () => {
 								return (
 									<li className="activity-card">
 										<p>
-											{act.description} at {act.time}
+											{act.description} at {moment(act.time).format("LT")}
 										</p>
-										<button>Edit</button>
 										<button>Delete</button>
 									</li>
 								);

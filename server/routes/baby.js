@@ -13,7 +13,6 @@ const checkError = (req, res, next) => {
 
 router.post(
 	"/create",
-	// authorization,
 	body("baby_name")
 		.exists()
 		.trim()
