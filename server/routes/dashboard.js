@@ -13,12 +13,6 @@ router.get("/", authorization, async (req, res, next) => {
 			[req.user_id]
 		);
 
-		console.log(
-			"this is the babies",
-			babies.rows,
-			"this is the users",
-			users.rows
-		);
 		return res.json({ babies: babies.rows, babyActivities: users.rows });
 	} catch (err) {
 		console.error(err);

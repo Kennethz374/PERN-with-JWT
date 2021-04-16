@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const pool = require("../db");
 const authorization = require("../middleware/authorization");
-import { createBaby, deleteBaby } from "../controller/babies_controller";
+const { createBaby, deleteBaby } = require("../controller/babies_controller");
 
 router.post("/create", authorization, createBaby);
 

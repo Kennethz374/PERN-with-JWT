@@ -1,5 +1,6 @@
 const pool = require("../db");
-export const createBaby = async (req, res, next) => {
+
+const createBaby = async (req, res, next) => {
 	const { baby_name, baby_gender, baby_birthday, baby_owner_id } = req.body;
 	try {
 		const newBaby = await pool.query(
@@ -13,7 +14,7 @@ export const createBaby = async (req, res, next) => {
 	}
 };
 
-export const deleteBaby = async (req, res, next) => {
+const deleteBaby = async (req, res, next) => {
 	const { baby_id } = req.body;
 	try {
 		const removeBaby = await pool.query(
@@ -25,4 +26,9 @@ export const deleteBaby = async (req, res, next) => {
 		console.error(err);
 		res.status(500).json("Server Error");
 	}
+};
+
+module.exports = {
+	createBaby,
+	deleteBaby,
 };

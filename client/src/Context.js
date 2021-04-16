@@ -95,35 +95,6 @@ export const AppProvider = ({ children }) => {
 		}
 	};
 
-	const onSubmitBabyFrom = async (
-		e,
-		url,
-		baby_name,
-		baby_gender,
-		baby_birthday,
-		baby_owner_id
-	) => {
-		e.preventDefault();
-
-		const body = { baby_name, baby_gender, baby_birthday, baby_owner_id };
-		try {
-			const response = await fetch(url, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(body),
-			});
-			const parseRes = await response.json();
-			console.log(parseRes);
-			// if (parseRes.token) {
-			// 	// localStorage.setItem("token", parseRes.token);
-			// 	// handleAuth(true);
-			// 	return;
-			// }
-		} catch (err) {
-			console.error(err.message);
-		}
-	};
-
 	const getInfoFromDashboard = async () => {
 		try {
 			const response = await fetch(dashboardUrl, {
@@ -139,6 +110,35 @@ export const AppProvider = ({ children }) => {
 			console.error(err.message);
 		}
 	};
+
+	// const onSubmitBabyFrom = async (
+	// 	e,
+	// 	url,
+	// 	baby_name,
+	// 	baby_gender,
+	// 	baby_birthday,
+	// 	baby_owner_id
+	// ) => {
+	// 	e.preventDefault();
+
+	// 	const body = { baby_name, baby_gender, baby_birthday, baby_owner_id };
+	// 	try {
+	// 		const response = await fetch(url, {
+	// 			method: "POST",
+	// 			headers: { "Content-Type": "application/json" },
+	// 			body: JSON.stringify(body),
+	// 		});
+	// 		const parseRes = await response.json();
+	// 		console.log(parseRes);
+	// 		// if (parseRes.token) {
+	// 		// 	// localStorage.setItem("token", parseRes.token);
+	// 		// 	// handleAuth(true);
+	// 		// 	return;
+	// 		// }
+	// 	} catch (err) {
+	// 		console.error(err.message);
+	// 	}
+	// };
 
 	const logout = (e) => {
 		e.preventDefault();

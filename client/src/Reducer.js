@@ -16,7 +16,7 @@ const Reducer = (state, action) => {
 		}
 	}
 
-	if ((action.type = "HANDLE_BABY_INFO")) {
+	if (action.type === "HANDLE_BABY_INFO") {
 		const { type, info } = action.payload;
 		if (type === "baby_name") {
 			return { ...state, newBaby: { ...state.newBaby, baby_name: info } };
@@ -58,11 +58,11 @@ const Reducer = (state, action) => {
 		};
 	}
 
-	if ((action.type = "TOGGLE_BABY")) {
+	if (action.type === "TOGGLE_BABY") {
 		return { ...state, currentBaby: action.payload };
 	}
 
-	if ((action.type = "SET_LOADING")) {
+	if (action.type === "SET_LOADING") {
 		return { ...state, isLoading: action.payload };
 	}
 
