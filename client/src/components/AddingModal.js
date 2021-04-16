@@ -45,7 +45,10 @@ const AddingModal = () => {
 						className="modal_baby_birthday"
 					/>
 
-					<button>submit</button>
+					<div className="modal_footer">
+						<button>Cancel</button>
+						<button>Submit</button>
+					</div>
 				</form>
 			</div>
 		</div>
