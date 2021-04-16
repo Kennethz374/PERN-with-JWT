@@ -13,7 +13,7 @@ const checkError = (req, res, next) => {
 
 router.post(
 	"/create",
-	authorization,
+	// authorization,
 	body("baby_name")
 		.exists()
 		.trim()
@@ -26,7 +26,7 @@ router.post(
 		.escape()
 		.withMessage("Gender must be at least 4 character ex Male"),
 	body("baby_birthday")
-		.isLength({ max: 8 })
+		.isLength({ max: 20 })
 		.trim()
 		.escape()
 		.withMessage("please enter with YYYYMMDD"),

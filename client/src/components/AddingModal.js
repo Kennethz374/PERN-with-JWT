@@ -29,14 +29,14 @@ const AddingModal = () => {
 					}
 					className="baby-form"
 				>
-					<input
+					{/* <input
 						type="text"
 						name="baby_owner_id"
 						placeholder="baby_owner_id"
-						value={baby_owner_id}
+						value={currentUserId}
 						onChange={() => handleNewbabyInfo("baby_owner_id", currentUserId)}
 						className="modal_baby_owner_id"
-					/>
+					/> */}
 					{/* invisible */}
 
 					<input

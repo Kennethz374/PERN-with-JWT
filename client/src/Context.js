@@ -135,7 +135,7 @@ export const AppProvider = ({ children }) => {
 				body: JSON.stringify(body),
 			});
 			const parseRes = await response.json();
-			console.log(parseRes);
+			window.location.replace("http://localhost:3000/dashboard");
 		} catch (err) {
 			console.error(err.message);
 		}

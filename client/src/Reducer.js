@@ -27,9 +27,6 @@ const Reducer = (state, action) => {
 		if (type === "baby_birthday") {
 			return { ...state, newBaby: { ...state.newBaby, baby_birthday: info } };
 		}
-		if (type === "baby_owner_id") {
-			return { ...state, newBaby: { ...state.newBaby, baby_owner_id: info } };
-		}
 	}
 
 	if (action.type === "SET_INFO") {
@@ -41,6 +38,7 @@ const Reducer = (state, action) => {
 			babies: babies,
 			currentBaby: babies[0].baby_id,
 			currentActivity: babyActivities,
+			newBaby: { ...state.newBaby, baby_owner_id: babyActivities[0].user_id },
 		};
 	}
 
