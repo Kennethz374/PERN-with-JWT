@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Loading from "./components/Loading";
 import { useGlobalContext } from "./Context";
+import AddingModal from "./components/AddingModal";
 
 const App = () => {
 	const { isAuthenticated, verifyAuth, isLoading } = useGlobalContext();
@@ -24,6 +25,9 @@ const App = () => {
 	return (
 		<Router>
 			<Switch>
+				<Route exact path="/">
+					<AddingModal />
+				</Route>
 				<Route exact path="/dashboard">
 					{isAuthenticated === "loading" ? (
 						<Loading />

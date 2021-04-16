@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EAChB,UAAU,EAAE,UAAU;EACtB,gBAAgB,EAAE,iLAAiL;EACnM,mBAAmB,EAAE,WAAW;EAChC,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,MAAM;CAClB",
+    "sources": [
+        "../scss/AddingModal.scss"
+    ],
+    "names": [],
+    "file": "AddingModal.css"
+}

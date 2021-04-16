@@ -18,6 +18,13 @@ export const AppProvider = ({ children }) => {
 		currentBaby: "",
 		currentActivity: [],
 		babies: [],
+		newBaby: {
+			baby_id: "",
+			baby_name: "",
+			baby_gender: "",
+			baby_birthday: "",
+			baby_owner_id: "",
+		},
 	};
 	const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -38,6 +45,10 @@ export const AppProvider = ({ children }) => {
 
 	const handleInputs = (type, input) => {
 		dispatch({ type: "HANDLE_INPUT", payload: { type, input } });
+	};
+
+	const handleNewbabyInfo = (type, info) => {
+		dispatch({ type: "HANDLE_BABY_INFO", payload: { type, info } });
 	};
 
 	const setDashboardInfo = (info) => {
@@ -135,6 +146,7 @@ export const AppProvider = ({ children }) => {
 				verifyAuth,
 				setIsLoading,
 				selectBaby,
+				handleNewbabyInfo,
 			}}
 		>
 			{children}
