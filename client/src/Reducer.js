@@ -30,17 +30,27 @@ const Reducer = (state, action) => {
 	}
 
 	if (action.type === "SET_INFO") {
-		const { babies, babyActivities } = action.payload;
+		const { babies, babyActivities, user_id } = action.payload;
+
+		if (babies.length === 0) {
+			return {
+				...state,
+				newBaby: {
+					...state.newBaby,
+					baby_owner_id: user_id,
+				},
+			};
+		}
 		return {
 			...state,
 			currentUserName: babies[0].user_name,
-			currentUserId: babies[0].user_id,
+			currentUserId: user_id,
 			babies: babies,
 			currentBaby: babies[0].baby_id,
 			currentActivity: babyActivities || null,
 			newBaby: {
 				...state.newBaby,
-				baby_owner_id: babies[0].user_id,
+				baby_owner_id: user_id,
 			},
 			newActivity: {
 				...state.newActivity,

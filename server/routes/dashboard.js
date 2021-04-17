@@ -13,7 +13,11 @@ router.get("/", authorization, async (req, res, next) => {
 			[req.user_id]
 		);
 
-		return res.json({ babies: babies.rows, babyActivities: users.rows });
+		return res.json({
+			babies: babies.rows,
+			babyActivities: users.rows,
+			user_id: req.user_id,
+		});
 	} catch (err) {
 		console.error(err);
 		res.status(500).json("Server Error");
