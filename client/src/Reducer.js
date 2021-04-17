@@ -34,14 +34,17 @@ const Reducer = (state, action) => {
 		return {
 			...state,
 			currentUserName: babies[0].user_name,
-			currentUserId: babyActivities[0].user_id,
+			currentUserId: babies[0].user_id,
 			babies: babies,
 			currentBaby: babies[0].baby_id,
-			currentActivity: babyActivities,
-			newBaby: { ...state.newBaby, baby_owner_id: babyActivities[0].user_id },
+			currentActivity: babyActivities || null,
+			newBaby: {
+				...state.newBaby,
+				baby_owner_id: babies[0].user_id,
+			},
 			newActivity: {
 				...state.newActivity,
-				activity_owner_id: babyActivities[0].baby_id,
+				activity_owner_id: babies[0].baby_id,
 			},
 		};
 	}

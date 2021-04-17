@@ -42,21 +42,25 @@ const Dashboard = () => {
 				</div>
 
 				<div className="nav-babies">
-					{babies.map((baby) => {
-						return (
-							<button
-								className={`${
-									baby.baby_gender === "Male" ? `baby-boy` : `baby-girl`
-								} ${currentBaby === baby.baby_id && "selected"}`}
-								key={baby.baby_id}
-								onClick={() => {
-									selectBaby(baby.baby_id);
-								}}
-							>
-								{baby.baby_name}
-							</button>
-						);
-					})}
+					{babies.length > 0 ? (
+						babies.map((baby) => {
+							return (
+								<button
+									className={`${
+										baby.baby_gender === "Male" ? `baby-boy` : `baby-girl`
+									} ${currentBaby === baby.baby_id && "selected"}`}
+									key={baby.baby_id}
+									onClick={() => {
+										selectBaby(baby.baby_id);
+									}}
+								>
+									{baby.baby_name}
+								</button>
+							);
+						})
+					) : (
+						<h4>No baby profile created yet, create one now!</h4>
+					)}
 				</div>
 
 				<div className="add_act">
@@ -77,7 +81,7 @@ const Dashboard = () => {
 
 				<div className="dashboard-body">
 					<ul className="activity-list">
-						{activities &&
+						{activities.length > 0 ? (
 							activities.map((act) => {
 								return (
 									<li className="activity-card" key={act.activity_id}>
@@ -89,7 +93,10 @@ const Dashboard = () => {
 										</button>
 									</li>
 								);
-							})}
+							})
+						) : (
+							<h3>No activity created yet, create for now</h3>
+						)}
 					</ul>
 				</div>
 

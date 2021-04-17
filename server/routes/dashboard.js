@@ -5,7 +5,7 @@ const authorization = require("../middleware/authorization");
 router.get("/", authorization, async (req, res, next) => {
 	try {
 		const babies = await pool.query(
-			"SELECT baby_name, baby_gender, baby_birthday, user_name, baby_id FROM babies INNER JOIN users ON user_id = baby_owner_id WHERE user_id = $1",
+			"SELECT baby_name, baby_gender, baby_birthday, user_name, baby_id, user_id FROM babies INNER JOIN users ON user_id = baby_owner_id WHERE user_id = $1",
 			[req.user_id]
 		);
 		const users = await pool.query(
