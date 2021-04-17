@@ -69,7 +69,7 @@ const Dashboard = () => {
 						{activities &&
 							activities.map((act) => {
 								return (
-									<li className="activity-card">
+									<li className="activity-card" key={act.activity_id}>
 										<p>
 											{act.description} at {moment(act.time).format("LT")}
 										</p>
