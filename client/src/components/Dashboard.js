@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import moment from "moment";
-import dayjs from "dayjs";
 
 import { useGlobalContext } from "../Context";
 import "../css/Dashboard.css";
@@ -23,7 +22,6 @@ const Dashboard = () => {
 		getInfoFromDashboard();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
 	const activities = currentActivity.filter(
 		(act) => act.baby_id === currentBaby
 	);
@@ -46,9 +44,9 @@ const Dashboard = () => {
 					{babies.map((baby) => {
 						return (
 							<button
-								className={
+								className={`${
 									baby.baby_gender === "Male" ? `baby-boy` : `baby-girl`
-								}
+								} ${currentBaby === baby.baby_id && "selected"}`}
 								key={baby.baby_id}
 								onClick={() => {
 									selectBaby(baby.baby_id);
@@ -58,6 +56,12 @@ const Dashboard = () => {
 							</button>
 						);
 					})}
+				</div>
+
+				<div className="add_act">
+					<input type="text" placeholder="ex. Milk intake" />
+					<input type="text" placeholder="Amt" />
+					<div className="add-activity">Add</div>
 				</div>
 
 				<div className="dashboard-body">
@@ -75,8 +79,6 @@ const Dashboard = () => {
 							})}
 					</ul>
 				</div>
-
-				<div className="add-activity">Add</div>
 
 				<button className="logout-btn" onClick={logout}>
 					Logout

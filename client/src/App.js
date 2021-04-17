@@ -15,7 +15,7 @@ import { useGlobalContext } from "./Context";
 import AddingModal from "./components/AddingModal";
 
 const App = () => {
-	const { isAuthenticated, verifyAuth, isLoading } = useGlobalContext();
+	const { isAuthenticated, verifyAuth } = useGlobalContext();
 
 	useEffect(() => {
 		verifyAuth();
@@ -26,7 +26,7 @@ const App = () => {
 		<Router>
 			<Switch>
 				<Route exact path="/">
-					<AddingModal />
+					{/* <ActivityModal /> */}
 				</Route>
 				<Route exact path="/dashboard">
 					{isAuthenticated === "loading" ? (

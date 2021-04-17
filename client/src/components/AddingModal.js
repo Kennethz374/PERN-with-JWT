@@ -5,7 +5,6 @@ import "../css/AddingModal.css";
 
 const AddingModal = () => {
 	const {
-		currentUserId,
 		handleNewbabyInfo,
 		newBaby,
 		toggleModal,
@@ -29,16 +28,6 @@ const AddingModal = () => {
 					}
 					className="baby-form"
 				>
-					{/* <input
-						type="text"
-						name="baby_owner_id"
-						placeholder="baby_owner_id"
-						value={currentUserId}
-						onChange={() => handleNewbabyInfo("baby_owner_id", currentUserId)}
-						className="modal_baby_owner_id"
-					/> */}
-					{/* invisible */}
-
 					<input
 						type="text"
 						name="baby_name"
