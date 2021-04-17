@@ -29,7 +29,7 @@ app.use("/dashboard", dashboardRouter);
 //Add Baby
 app.use("/baby", babyRouter);
 
-// app.use("/activity", activityRouter);
+app.use("/activity", activityRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);

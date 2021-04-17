@@ -26,6 +26,13 @@ export const AppProvider = ({ children }) => {
 			baby_birthday: "",
 			baby_owner_id: "",
 		},
+		newActivity: {
+			activity_id: "",
+			description: "",
+			amount: "",
+			time: "",
+			activity_owner_id: "",
+		},
 	};
 	const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -35,6 +42,7 @@ export const AppProvider = ({ children }) => {
 	const dashboardUrl = "http://localhost:5000/dashboard/";
 	const verifyUrl = "http://localhost:5000/auth/verify";
 	const addBabyUrl = "http://localhost:5000/baby/create";
+	const deleteActivityUrl = "http://localhost:5000/activity/delete";
 
 	// HELPER FUNCTIONS
 	const handleAuth = (boolean) => {
@@ -117,6 +125,25 @@ export const AppProvider = ({ children }) => {
 		}
 	};
 
+	const deleteActivity = async (activity_id) => {
+		const body = { activity_id };
+		try {
+			const response = await fetch(deleteActivityUrl, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					// 	token: localStorage.token,
+				},
+				body: JSON.stringify(body),
+			});
+			// const parseRes = await response.json();
+			window.location.replace("http://localhost:3000/dashboard");
+			console.log("deleted", activity_id);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
 	const onSubmitBabyForm = async (
 		e,
 		url,
@@ -180,6 +207,7 @@ export const AppProvider = ({ children }) => {
 				registerUrl,
 				loginUrl,
 				addBabyUrl,
+				deleteActivity,
 			}}
 		>
 			{children}

@@ -39,6 +39,10 @@ const Reducer = (state, action) => {
 			currentBaby: babies[0].baby_id,
 			currentActivity: babyActivities,
 			newBaby: { ...state.newBaby, baby_owner_id: babyActivities[0].user_id },
+			newActivity: {
+				...state.newActivity,
+				activity_owner_id: babyActivities[0].baby_id,
+			},
 		};
 	}
 
@@ -57,7 +61,11 @@ const Reducer = (state, action) => {
 	}
 
 	if (action.type === "TOGGLE_BABY") {
-		return { ...state, currentBaby: action.payload };
+		return {
+			...state,
+			currentBaby: action.payload,
+			newActivity: { ...state.newActivity, activity_owner_id: action.payload },
+		};
 	}
 
 	if (action.type === "TOGGLE_MODAL") {

@@ -16,6 +16,7 @@ const Dashboard = () => {
 		selectBaby,
 		isModalOpen,
 		toggleModal,
+		deleteActivity,
 	} = useGlobalContext();
 
 	useEffect(() => {
@@ -59,8 +60,18 @@ const Dashboard = () => {
 				</div>
 
 				<div className="add_act">
-					<input type="text" placeholder="ex. Milk intake" />
-					<input type="text" placeholder="Amt" />
+					<input
+						type="text"
+						placeholder="ex. Milk intake"
+						// value={description}
+						// name={description}
+					/>
+					<input
+						type="text"
+						placeholder="Amt"
+						// value={}
+						// name={amount}
+					/>
 					<div className="add-activity">Add</div>
 				</div>
 
@@ -73,7 +84,9 @@ const Dashboard = () => {
 										<p>
 											{act.description} at {moment(act.time).format("LT")}
 										</p>
-										<button>Delete</button>
+										<button onClick={() => deleteActivity(act.activity_id)}>
+											Delete
+										</button>
 									</li>
 								);
 							})}
