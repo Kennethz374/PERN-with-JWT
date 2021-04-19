@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
 	const { onSubmitForm, loginUrl, input, handleInputs } = useGlobalContext();
-	const { user_email, user_password } = input;
 
 	return (
 		<section className="login-container">
@@ -14,14 +13,16 @@ const Login = () => {
 				<h1 className="section-title">Login</h1>
 				<form
 					className="login-form"
-					onSubmit={(e) => onSubmitForm(e, loginUrl, user_email, user_password)}
+					onSubmit={(e) =>
+						onSubmitForm(e, loginUrl, input.user_email, input.user_password)
+					}
 				>
 					<input
 						className="input-email"
 						type="email"
 						name="user_email"
 						placeholder="email"
-						value={user_email}
+						value={input.user_email}
 						onChange={(e) => handleInputs("user_email", e.target.value)}
 					/>
 					<input
@@ -29,7 +30,7 @@ const Login = () => {
 						type="password"
 						name="user_password"
 						placeholder="password"
-						value={user_password}
+						value={input.user_password}
 						onChange={(e) => handleInputs("user_password", e.target.value)}
 					/>
 					<button className="login-button">Login</button>

@@ -73,17 +73,9 @@ const Reducer = (state, action) => {
 	}
 
 	if (action.type === "RESET_INPUT") {
-		const { user_email, user_name, user_password } = action.payload;
+		// const { user_email, user_name, user_password } = action.payload;
 
-		return {
-			...state,
-			input: {
-				...state.input,
-				user_email: user_email,
-				user_name: user_name,
-				user_password: user_password,
-			},
-		};
+		return { ...state, input: action.payload };
 	}
 
 	if (action.type === "TOGGLE_BABY") {
