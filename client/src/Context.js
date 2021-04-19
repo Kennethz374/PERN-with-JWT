@@ -43,6 +43,7 @@ export const AppProvider = ({ children }) => {
 	const verifyUrl = "http://localhost:5000/auth/verify";
 	const addBabyUrl = "http://localhost:5000/baby/create";
 	const deleteActivityUrl = "http://localhost:5000/activity/delete";
+	const addActivityUrl = "http://localhost:5000/activity/create";
 
 	// HELPER FUNCTIONS
 	const handleAuth = (boolean) => {
@@ -63,6 +64,10 @@ export const AppProvider = ({ children }) => {
 
 	const handleNewbabyInfo = (type, info) => {
 		dispatch({ type: "HANDLE_BABY_INFO", payload: { type, info } });
+	};
+
+	const handleActivityInfo = (type, info) => {
+		dispatch({ type: "HANDLE_ACTIVITY_INFO", payload: { type, info } });
 	};
 
 	const setDashboardInfo = (info) => {
@@ -168,6 +173,29 @@ export const AppProvider = ({ children }) => {
 		}
 	};
 
+	const onSubmitActivityForm = async (
+		e,
+		url,
+		description,
+		amount,
+		activity_owner_id
+	) => {
+		e.preventDefault();
+		const body = { description, amount, activity_owner_id };
+		try {
+			const response = await fetch(url, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(body),
+			});
+
+			const parseRes = await response.json();
+			window.location.replace("http://localhost:3000/dashboard");
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
 	const logout = (e) => {
 		e.preventDefault();
 		localStorage.removeItem("token");
@@ -207,7 +235,10 @@ export const AppProvider = ({ children }) => {
 				registerUrl,
 				loginUrl,
 				addBabyUrl,
+				addActivityUrl,
 				deleteActivity,
+				onSubmitActivityForm,
+				handleActivityInfo,
 			}}
 		>
 			{children}

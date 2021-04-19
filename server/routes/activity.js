@@ -2,7 +2,7 @@ const router = require("express").Router();
 const pool = require("../db");
 const authorization = require("../middleware/authorization");
 
-router.post("/create", authorization, async (req, res, next) => {
+router.post("/create", async (req, res, next) => {
 	const { description, amount, activity_owner_id } = req.body;
 	try {
 		const newActivity = await pool.query(

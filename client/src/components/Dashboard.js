@@ -17,6 +17,10 @@ const Dashboard = () => {
 		isModalOpen,
 		toggleModal,
 		deleteActivity,
+		onSubmitActivityForm,
+		addActivityUrl,
+		handleActivityInfo,
+		newActivity,
 	} = useGlobalContext();
 
 	useEffect(() => {
@@ -63,21 +67,34 @@ const Dashboard = () => {
 					)}
 				</div>
 
-				<div className="add_act">
+				<form
+					className="add_act"
+					onSubmit={(e) =>
+						onSubmitActivityForm(
+							e,
+							addActivityUrl,
+							newActivity.description,
+							newActivity.amount,
+							newActivity.activity_owner_id
+						)
+					}
+				>
 					<input
 						type="text"
 						placeholder="ex. Milk intake"
-						// value={description}
-						// name={description}
+						onChange={(e) => handleActivityInfo("description", e.target.value)}
+						value={newActivity.description}
+						name="description"
 					/>
 					<input
 						type="text"
 						placeholder="Amt"
-						// value={}
-						// name={amount}
+						value={newActivity.amount}
+						name="amount"
+						onChange={(e) => handleActivityInfo("amount", e.target.value)}
 					/>
-					<div className="add-activity">Add</div>
-				</div>
+					<button className="add-activity">Add</button>
+				</form>
 
 				<div className="dashboard-body">
 					<ul className="activity-list">
@@ -86,7 +103,8 @@ const Dashboard = () => {
 								return (
 									<li className="activity-card" key={act.activity_id}>
 										<p>
-											{act.description} at {moment(act.time).format("LT")}
+											{act.description} {act.amount} at {""}
+											{moment(act.time).format("LT")}
 										</p>
 										<button onClick={() => deleteActivity(act.activity_id)}>
 											Delete
@@ -95,7 +113,7 @@ const Dashboard = () => {
 								);
 							})
 						) : (
-							<h3>No activity created yet, create for now</h3>
+							<h3>No activity created yet, create one for now</h3>
 						)}
 					</ul>
 				</div>

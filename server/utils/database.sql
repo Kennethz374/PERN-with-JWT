@@ -23,7 +23,7 @@ CREATE TABLE babies(
 CREATE TABLE activities(
     activity_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     description VARCHAR(255) NOT NULL,
-    amount SMALLINT,
+    amount VARCHAR(255),
     time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     activity_owner_id uuid REFERENCES babies(baby_id) ON DELETE CASCADE
 );

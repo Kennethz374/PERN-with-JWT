@@ -29,6 +29,19 @@ const Reducer = (state, action) => {
 		}
 	}
 
+	if (action.type === "HANDLE_ACTIVITY_INFO") {
+		const { type, info } = action.payload;
+		if (type === "description") {
+			return {
+				...state,
+				newActivity: { ...state.newActivity, description: info },
+			};
+		}
+		if (type === "amount") {
+			return { ...state, newActivity: { ...state.newActivity, amount: info } };
+		}
+	}
+
 	if (action.type === "SET_INFO") {
 		const { babies, babyActivities, user_id } = action.payload;
 
