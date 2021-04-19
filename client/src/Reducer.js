@@ -73,8 +73,6 @@ const Reducer = (state, action) => {
 	}
 
 	if (action.type === "RESET_INPUT") {
-		// const { user_email, user_name, user_password } = action.payload;
-
 		return { ...state, input: action.payload };
 	}
 
