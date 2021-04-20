@@ -5,23 +5,18 @@ import { useGlobalContext } from "../Context";
 import "../css/Dashboard.css";
 import AddingModal from "../components/AddingModal";
 import BabyNav from "../components/BabyNav";
+import ActivityForm from "../components/ActivityForm";
 
 const Dashboard = () => {
 	const {
 		getInfoFromDashboard,
 		currentUserName,
 		logout,
-		babies,
 		currentActivity,
 		currentBaby,
-		selectBaby,
 		isModalOpen,
 		toggleModal,
 		deleteActivity,
-		onSubmitActivityForm,
-		addActivityUrl,
-		handleActivityInfo,
-		newActivity,
 	} = useGlobalContext();
 
 	useEffect(() => {
@@ -35,6 +30,7 @@ const Dashboard = () => {
 	return (
 		<>
 			{isModalOpen && <AddingModal />}
+
 			<div className="dashboard-container">
 				<div className="dashboard-header">
 					<h3>{moment().format("MMM Do YYYY")} </h3>
@@ -42,44 +38,9 @@ const Dashboard = () => {
 					<h4>Welcome back {currentUserName}</h4>
 				</div>
 
-				<div className="add-baby" onClick={toggleModal}>
-					Add A Baby
-				</div>
+				<BabyNav />
 
-				<BabyNav
-					babies={babies}
-					currentBaby={currentBaby}
-					selectBaby={selectBaby}
-				/>
-
-				<form
-					className="add_act"
-					onSubmit={(e) =>
-						onSubmitActivityForm(
-							e,
-							addActivityUrl,
-							newActivity.description,
-							newActivity.amount,
-							newActivity.activity_owner_id
-						)
-					}
-				>
-					<input
-						type="text"
-						placeholder="ex. Milk intake"
-						onChange={(e) => handleActivityInfo("description", e.target.value)}
-						value={newActivity.description}
-						name="description"
-					/>
-					<input
-						type="text"
-						placeholder="Amt"
-						value={newActivity.amount}
-						name="amount"
-						onChange={(e) => handleActivityInfo("amount", e.target.value)}
-					/>
-					<button className="add-activity">Add</button>
-				</form>
+				<ActivityForm />
 
 				<div className="dashboard-body">
 					<ul className="activity-list">
