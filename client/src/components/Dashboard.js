@@ -4,6 +4,7 @@ import moment from "moment";
 import { useGlobalContext } from "../Context";
 import "../css/Dashboard.css";
 import AddingModal from "../components/AddingModal";
+import BabyNav from "../components/BabyNav";
 
 const Dashboard = () => {
 	const {
@@ -45,27 +46,11 @@ const Dashboard = () => {
 					Add A Baby
 				</div>
 
-				<div className="nav-babies">
-					{babies.length > 0 ? (
-						babies.map((baby) => {
-							return (
-								<button
-									className={`${
-										baby.baby_gender === "Male" ? `baby-boy` : `baby-girl`
-									} ${currentBaby === baby.baby_id && "selected"}`}
-									key={baby.baby_id}
-									onClick={() => {
-										selectBaby(baby.baby_id);
-									}}
-								>
-									{baby.baby_name}
-								</button>
-							);
-						})
-					) : (
-						<h4>No baby profile created yet, create one now!</h4>
-					)}
-				</div>
+				<BabyNav
+					babies={babies}
+					currentBaby={currentBaby}
+					selectBaby={selectBaby}
+				/>
 
 				<form
 					className="add_act"
