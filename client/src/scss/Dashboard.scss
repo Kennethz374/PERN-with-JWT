@@ -64,17 +64,19 @@
 		margin-bottom: 0.5rem;
 
 		.baby-boy {
-			background-color: blue;
-			color: white;
+			background-color: lightsteelblue;
+			color: black;
 			border-radius: 5px;
 			opacity: 0.8;
 			margin: 1rem;
+			font-weight: 900;
 		}
 		.baby-girl {
-			background-color: pink;
+			background-color: lightpink;
 			border-radius: 5px;
 			opacity: 0.8;
 			margin: 1rem;
+			font-weight: 900;
 		}
 
 		.selected {
