@@ -76,7 +76,8 @@
       grid-template-columns: 5fr 4rem;
   padding: 0;
   margin: 0.25rem;
-  background: tomato;
+  background: lightgray;
+  font-weight: 600;
 }
 
 .dashboard-container .nav-babies {
@@ -140,8 +141,12 @@
   display: grid;
   margin: 1rem auto;
   width: 95%;
-  -ms-grid-columns: 70% 20% 10%;
-      grid-template-columns: 70% 20% 10%;
+  -ms-grid-columns: 65% 25% 10%;
+      grid-template-columns: 65% 25% 10%;
+}
+
+.dashboard-container .add_act input {
+  margin-right: 0.25rem;
 }
 
 .dashboard-container .add-activity {

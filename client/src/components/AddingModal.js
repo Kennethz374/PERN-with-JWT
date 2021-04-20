@@ -31,7 +31,7 @@ const AddingModal = () => {
 					<input
 						type="text"
 						name="baby_name"
-						placeholder="baby_name"
+						placeholder="Baby name"
 						value={baby_name}
 						onChange={(e) => handleNewbabyInfo("baby_name", e.target.value)}
 						className="modal_baby_name"
@@ -39,7 +39,7 @@ const AddingModal = () => {
 					<input
 						type="text"
 						name="baby_gender"
-						placeholder="baby_gender"
+						placeholder="Gender"
 						value={baby_gender}
 						onChange={(e) => handleNewbabyInfo("baby_gender", e.target.value)}
 						className="modal_baby_gender"
@@ -47,7 +47,7 @@ const AddingModal = () => {
 					<input
 						type="text"
 						name="baby_birthday"
-						placeholder="baby_birthday"
+						placeholder="Day of birth"
 						value={baby_birthday}
 						onChange={(e) => handleNewbabyInfo("baby_birthday", e.target.value)}
 						className="modal_baby_birthday"
